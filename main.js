@@ -6,6 +6,9 @@ function setup() {
   // Preload all theme assets
   if (typeof preloadAssets === 'function') preloadAssets();
   
+  // Start background music
+  if (typeof startBackgroundMusic === 'function') startBackgroundMusic();
+  
   if (typeof startTimer === 'function') startTimer();
 }
 
@@ -17,6 +20,9 @@ function draw() {
     if (typeof displayGameOver === 'function') displayGameOver();
     return; // On arrête ici, rien d'autre ne tourne
   }
+
+  // Update theme switching (always, even during pause)
+  if (typeof updateThemeSwitching === 'function') updateThemeSwitching();
 
   if (!isPaused) {
     // Le jeu ne tourne que si on n'est pas en pause

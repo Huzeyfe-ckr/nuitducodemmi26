@@ -154,13 +154,33 @@ function drawBackgroundFront() {
 
 /**
  * Draws the ground (bottom 2/3 of screen)
- * Uses a solid color based on current theme
+ * Uses a color based on current theme
  */
 function drawGround() {
   let trackTop = height / 3;
   
-  // Semi-dark orange for beach theme
-  fill(194, 120, 50);
+  // Choose color based on current theme
+  let fillColor;
+  if (typeof currentTheme !== 'undefined') {
+    if (currentTheme === 1) {
+      // Theme 1: Semi-dark orange for beach theme
+      fillColor = [194, 120, 50];
+    } else if (currentTheme === 2) {
+      // Theme 2: Green
+      fillColor = [76, 175, 80];
+    } else if (currentTheme === 3) {
+      // Theme 3: Dark asphalt black
+      fillColor = [40, 40, 40];
+    } else {
+      // Fallback
+      fillColor = [194, 120, 50];
+    }
+  } else {
+    // Fallback if currentTheme not defined
+    fillColor = [194, 120, 50];
+  }
+  
+  fill(fillColor[0], fillColor[1], fillColor[2]);
   noStroke();
   rect(0, trackTop, width, height - trackTop);
 }

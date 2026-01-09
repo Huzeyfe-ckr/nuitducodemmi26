@@ -131,9 +131,9 @@ function handlePauseLogic() {
         poseValidated = false;
         lastPauseTime = millis();
         
-        // Switch to a new theme after pose validation
-        if (typeof switchToNewTheme === 'function') {
-          switchToNewTheme();
+        // Switch to a new theme after pose validation (without resetting auto-switch timer)
+        if (typeof switchThemeForPose === 'function') {
+          switchThemeForPose();
         }
       }
     } else {
