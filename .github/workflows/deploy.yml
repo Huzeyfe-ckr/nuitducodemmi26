@@ -9,6 +9,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
 
     steps:
     - name: Checkout code
@@ -19,4 +23,10 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./
-        cname: # Optionnel: ajouter un domaine personnalisé ici
+        
+    - name: Comment PR with deployment URL
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      run: |
+        echo "✅ Déployé sur GitHub Pages!"
+        echo "🔗 Lien: https://Huzeyfe-ckr.github.io/nuitducodemmi26/"
+
